@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Décompteur</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            text-align: left;
+            padding: 20px;
+            height: 100vh;
+            margin: 0;
+            font-size: 1.5rem;
+            overflow: hidden;
+        }
+        #console {
+            white-space: pre-wrap;
+            overflow-y: auto;
+            height: 100%;
+        }
+        .binary {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="console">Tracking phone please do not touch the screen. Waiting...</div>
+
+    <script>
+        let count = 5;
+        const consoleElement = document.getElementById('console');
+        
+        const interval = setInterval(() => {
+            count--;
+            if (count === 0) {
+                clearInterval(interval);
+                setTimeout(startBinaryStream, 3000);
+            }
+        }, 1000);
+        
+        function startBinaryStream() {
+            setInterval(() => {
+                const p = document.createElement('p');
+                p.textContent = "01010101010101010101";
+                p.classList.add('binary');
+                consoleElement.appendChild(p);
+                consoleElement.scrollTop = consoleElement.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
